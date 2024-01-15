@@ -46,4 +46,5 @@ def test_get_robot_choice_scissor(mock_input):
 @patch("builtins.input", return_value="Rock")
 def test_play_game(mock_input, mock_get_robot_choice, mock_decide_who_will_win):
     assert play_game() == "You won!"
+    mock_decide_who_will_win.assert_called_with("Rock", "Scissor")
     
