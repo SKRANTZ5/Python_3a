@@ -14,16 +14,18 @@ def decide_who_will_win(player, robot):
         return "It was a tie"
     elif (player == "Scissor" and robot == "Rock") or (player == "Rock" and robot == "Paper") or (player == "Paper" and robot == "Scissor"):
         return "You lost"
-    
-def get_robot_choice():
-    choice = random.choice(["Rock", "Paper", "Scissor"])
-    print(choice)
-    return choice
+
+class RandomClass:
+    def get_robot_choice(self):
+        choice = random.choice(["Rock", "Paper", "Scissor"])
+        print(choice)
+        return choice
 
 
 def play_game():
     player_choice = input("Enter your choice: ")
-    robot_choice = get_robot_choice()
+    robot = RandomClass()
+    robot_choice = robot.get_robot_choice()
     return (decide_who_will_win(player_choice, robot_choice))
 
 if __name__ == "__main__":
