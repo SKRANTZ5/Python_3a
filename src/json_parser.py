@@ -14,6 +14,7 @@ class JsonParser:
             self.data = my_file.read()  # load the json file and save it to self.data
         return self.data
 
+
     def get_signal_title(self, identifier):
         for entry in self.data["services"]:  # loop through all services in self.data
             if entry["id"] == identifier:
