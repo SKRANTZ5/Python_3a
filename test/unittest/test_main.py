@@ -19,9 +19,10 @@ def test_parse_arguments(mock_parse_args, mock_add_argument):
     mock_parse_args.assert_called_once()
     mock_add_argument.assert_called_with("--file_path")
 
+@patch("src.main.signal_interpreter_app.run")
 @patch("src.main.parse_arguments", return_value=MockArgs)
 @patch.object(JsonParser, "load_file")
-def test_main(mock_load_file, mock_parse_arguments):
+def test_main(mock_load_file, mock_parse_arguments, mock_app_run):
     main()
     mock_load_file.assert_called_once()
     mock_load_file.assert_called_with(MockArgs.file_path)

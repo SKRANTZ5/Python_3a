@@ -11,7 +11,8 @@ from invoke import task
 
 # Relative paths
 SRC_DIR = "src"
-UNIT_TEST_DIR = "test"
+UNIT_TEST_DIR = os.path.join("test", "unittest")
+INTEGRATION_TEST_DIR = os.path.join("test", "integration")
 COV_PATH = ".coveragerc"
 
 @task
@@ -26,4 +27,9 @@ def lint(_):
 def unit_test(_):
     cmd = f"pytest {UNIT_TEST_DIR} --cov {SRC_DIR}  --cov-config={COV_PATH}"
     #cmd = f"pytest {UNIT_TEST_DIR} --cov {SRC_DIR}"
+    call(cmd, shell=True)
+    
+@task
+def integration_test(_):
+    cmd = f"pytest {INTEGRATION_TEST_DIR} --cov {SRC_DIR}  --cov-config={COV_PATH}"
     call(cmd, shell=True)

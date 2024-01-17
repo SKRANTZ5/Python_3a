@@ -5,8 +5,9 @@ Created on Fri Jan 12 10:33:09 2024
 @author: SKRANTZ5
 """
 
-from flask import Flask, request, jsonify
-from src.json_parser import JsonParser
+from flask import Flask, request, jsonify, abort
+from json_parser import JsonParser
+from custom_exception import MyCustomError
 
 signal_interpreter_app = Flask(__name__)
 json_parser = JsonParser()
@@ -24,7 +25,11 @@ json_parser = JsonParser()
 @signal_interpreter_app.route("/", methods=["POST"])
 def interpret_signal():
     payload = request.get_json()
-    title = json_parser.get_signal_title("27")
-    return jsonify(title)
+    try:
+        title = json_parser.get_signal_title("333")
+    except MyCustomError as e:
+        abort(e.code, description=e.msg)
+    else:
+        return jsonify(title)
 
 #signal_interpreter_app.run()
