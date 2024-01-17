@@ -4,9 +4,31 @@ Created on Wed Jan 17 08:50:18 2024
 
 @author: SKRANTZ5
 """
-import logging
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+import os
+import json
+import yaml
+import logging.config
+
+CURR_DIR = os.path.abspath(os.path.dirname(__file__))
+#LOG_SETTINGS_PATH = os.path.join(CURR_DIR, "log_settings.json")
+LOG_SETTINGS_PATH = os.path.join(CURR_DIR, "log_settings.yaml")
+
+with open(LOG_SETTINGS_PATH, "r") as f:
+    #config = json.load(f)
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger("Test_Logger")
+
+# if not os.path.exists("Logs"):
+#     os.makedirs("Logs")
+
+# import logging
+# logging.basicConfig(
+#     filename=os.path.join("Logs","debug.log"),
+#     level=logging.DEBUG,
+#     format="%(asctime)s - %(lineno)d - %(funcName)s - %(message)s")
+# logger = logging.getLogger(__name__)
 
 
 def bus_validator():
@@ -23,6 +45,8 @@ def bus_validator():
             print(f"Sorry, you have to wait {24-age} more years")
     finally:
         print("Good bye")
+        hej = "hej"
+        logger.error("Func ended %s", hej)
         
 if __name__ == "__main__":
     bus_validator()
