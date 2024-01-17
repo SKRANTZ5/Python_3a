@@ -26,3 +26,5 @@ def test_main(mock_load_file, mock_parse_arguments):
     mock_load_file.assert_called_once()
     mock_load_file.assert_called_with(MockArgs.file_path)
     
+
+    

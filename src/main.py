@@ -15,7 +15,7 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     _ = json_parser.load_file(args.file_path)
-#     signal_interpreter_app.run()
+    signal_interpreter_app.run()
 
 if __name__ == "__main__":
     main()

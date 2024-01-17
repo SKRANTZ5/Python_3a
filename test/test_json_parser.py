@@ -11,10 +11,11 @@ import pytest
 from src.json_parser import JsonParser
 
 #@patch.object(JsonParser, "load_file")
-@patch("builtins.open", mock_open(read_data="Hello"))
-def test_load_file():
+#@patch("builtins.open", mock_open(read_data="Hello"))
+@patch("src.json_parser.js.load", return_value="Hello")
+def test_load_file(mock_json_open):
     json_parser = JsonParser()
-    assert json_parser.load_file("my_file_path") == "Hello"
+    assert json_parser.load_file("C:\signal_database.json") == "Hello"
  
 @pytest.mark.parametrize("identifier, expected", [
     ("123", None),

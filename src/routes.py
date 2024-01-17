@@ -23,10 +23,8 @@ json_parser = JsonParser()
 
 @signal_interpreter_app.route("/", methods=["POST"])
 def interpret_signal():
-    payload = {"signal": "11"}
-    title = json_parser.get_signal_title(payload["signal"])
+    payload = request.get_json()
+    title = json_parser.get_signal_title("27")
     return jsonify(title)
-    # data = request.get_json()
-    # return data
 
 #signal_interpreter_app.run()
