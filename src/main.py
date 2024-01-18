@@ -9,8 +9,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from argparse import ArgumentParser
-from routes import signal_interpreter_app, json_parser
-from custom_exception import MyCustomError
+from src.routes import signal_interpreter_app, json_parser
+from src.custom_exception import MyCustomError
 from src import logger
 
 

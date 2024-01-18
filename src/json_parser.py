@@ -6,7 +6,7 @@ Created on Mon Jan 15 09:49:39 2024
 """
 
 import json as js
-from custom_exception import MyCustomError
+from src.custom_exception import MyCustomError
 
 
 class JsonParser:

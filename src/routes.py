@@ -6,8 +6,8 @@ Created on Fri Jan 12 10:33:09 2024
 """
 
 from flask import Flask, request, jsonify, abort
-from json_parser import JsonParser
-from custom_exception import MyCustomError
+from src.json_parser import JsonParser
+from src.custom_exception import MyCustomError
 
 signal_interpreter_app = Flask(__name__)
 json_parser = JsonParser()

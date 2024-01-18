@@ -7,6 +7,7 @@ Created on Mon Jan 15 10:40:10 2024
 
 from unittest.mock import patch, mock_open
 import pytest
+from src.custom_exception import MyCustomError
 
 from src.json_parser import JsonParser
 
@@ -18,10 +19,16 @@ def test_load_file(mock_json_open):
     assert json_parser.load_file("C:\signal_database.json") == "Hello"
  
 @pytest.mark.parametrize("identifier, expected", [
-    ("123", None),
     ("11", "ECU Reset"),
 ])
 def test_get_signal_titel(identifier, expected):
     json_parser = JsonParser()
     json_parser.data = {"services": [{"title": "ECU Reset", "id": "11"}]}
     assert json_parser.get_signal_title(identifier) == expected
+    
+
+def test_get_signal_titel_invalid():
+    json_parser = JsonParser()
+    json_parser.data = {"services": [{"title": "ECU Reset", "id": "11"}]}
+    with pytest.raises(MyCustomError):
+        json_parser.get_signal_title("123")
