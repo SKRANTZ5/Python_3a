@@ -6,11 +6,11 @@ Created on Fri Jan 12 10:33:09 2024
 """
 
 from flask import Flask, request, jsonify, abort
-from src.json_parser import JsonParser
+from src.parser_factory import ParserFactory
 from src.custom_exception import MyCustomError
 
 signal_interpreter_app = Flask(__name__)
-json_parser = JsonParser()
+parser_factory = ParserFactory()
 
 # @signal_interpreter_app.route("/", methods=["GET"])
 # def hello():
@@ -24,9 +24,10 @@ json_parser = JsonParser()
 
 @signal_interpreter_app.route("/", methods=["POST"])
 def interpret_signal():
-    payload = request.get_json()
+    parser = parser_factory.get_parser()
     try:
-        title = json_parser.get_signal_title("333")
+        title = parser.get_signal_title("11")
+        #title = json_parser.get_signal_title("11")
     except MyCustomError as e:
         abort(e.code, description=e.msg)
     else:
